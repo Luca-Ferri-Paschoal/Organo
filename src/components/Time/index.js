@@ -1,32 +1,53 @@
 import './Time.css';
+import hexToRgba from 'hex-to-rgba';
 import Card from '../Card';
+import SelectColor from '../SelectColor';
 
-const Time = props => {
+const Time = ({ 
+    time, 
+    colaboradores, 
+    aoDeletar, 
+    aoMudarCor,
+    aoFavoritar
+}) => {
     const cssSection = {
-        backgroundColor: props.corSecundaria,
+        backgroundColor: hexToRgba(time.cor, 0.3),
     };
-
+    
     const cssH3 = {
-        borderBottomColor: props.corPrimaria,
+        borderBottomColor: time.cor,
+    }
+
+    const alteraCor = e => {
+        aoMudarCor(time.id, e.target.value);
     }
 
     return (
-        (props.colaboradores.length > 0) ?
+        (colaboradores.length > 0) ?
             <section
                 className='time'
                 style={cssSection}
-            >
-                <h3 style={cssH3}>{props.nome}</h3>
+            >   
+                <div className='selecionaCor'>
+                    <SelectColor 
+                        cor={time.cor}
+                        alteraCor={alteraCor}
+                    />
+                </div>
+                <h3 style={cssH3}>{time.nome}</h3>
                 <div className='colaboradores'>
-                    {props.colaboradores.map(
-                        colaborador =>
-                        <Card
-                            key={colaborador.nome}
-                            nome={colaborador.nome}
-                            cargo={colaborador.cargo}
-                            imagem={colaborador.imagem}
-                            cor={props.corPrimaria}
-                        />
+                    {colaboradores.map(
+                        (colaborador, index) => {
+                            return (
+                                <Card
+                                    key={index}
+                                    colaborador={colaborador}
+                                    cor={time.cor}
+                                    aoDeletar={aoDeletar}
+                                    aoFavoritar={aoFavoritar}
+                                />
+                            );
+                        }
                     )}
                 </div>
             </section>

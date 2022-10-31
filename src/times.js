@@ -1,37 +1,46 @@
-export const times = [
-    {
-        nome: 'Programação',
-        corPrimaria: '#57C278',
-        corSecundaria: '#D9F7E9',
-    },
-    {
-        nome: 'Front-End',
-        corPrimaria: '#82CFFA',
-        corSecundaria: '#E8F8FF',
-    },
-    {
-        nome: 'Data Science',
-        corPrimaria: '#A6D157',
-        corSecundaria: '#F0F8E2',
-    },
-    {
-        nome: 'Devops',
-        corPrimaria: '#E06B69',
-        corSecundaria: '#FDE7E8',
-    },
-    {
-        nome: 'UX e Design',
-        corPrimaria: '#DB6EBF',
-        corSecundaria: '#FAE9F5',
-    },
-    {
-        nome: 'Mobile',
-        corPrimaria: '#FFBA05',
-        corSecundaria: '#FFF5D9',
-    },
-    {
-        nome: 'Inovação e Gestão',
-        corPrimaria: '#FF8A29',
-        corSecundaria: '#FFEEDF',
-    },
-];
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
+const useStateTimes = () => {
+    const [times, setTimes] = useState([
+        {
+            id: uuidv4(),
+            nome: 'Programação',
+            cor: '#57C278',
+        },
+        {
+            id: uuidv4(),
+            nome: 'Front-End',
+            cor: '#82CFFA',
+        },
+        {
+            id: uuidv4(),
+            nome: 'Data Science',
+            cor: '#A6D157',
+        },
+        {
+            id: uuidv4(),
+            nome: 'Devops',
+            cor: '#E06B69',
+        },
+        {
+            id: uuidv4(),
+            nome: 'UX e Design',
+            cor: '#DB6EBF',
+        },
+        {
+            id: uuidv4(),
+            nome: 'Mobile',
+            cor: '#FFBA05',
+        },
+        {
+            id: uuidv4(),
+            nome: 'Inovação e Gestão',
+            cor: '#FF8A29',
+        },
+    ]);
+    
+    return [times, setTimes];
+}
+
+export default useStateTimes;

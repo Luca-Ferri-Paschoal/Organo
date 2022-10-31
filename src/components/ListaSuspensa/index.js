@@ -2,7 +2,7 @@ import './ListaSuspensa.css';
 
 const ListaSuspensa = props => {
     const options = props.itens.map(
-        item => <option key={item}>{item}</option>
+        (item, index) => <option key={index}>{item}</option>
     );
 
     const aoSelecionar = e => {

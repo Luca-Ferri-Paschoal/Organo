@@ -1,28 +1,32 @@
 import Time from '../Time';
 import './TodosTimes.css';
 
-const TodosTimes = props => {
+const TodosTimes = ({ 
+    times, 
+    colaboradores, 
+    aoDeletar, 
+    aoMudarCor,
+    aoFavoritar
+}) => {
     const seleciona = time => {
-        return props.colaboradores.filter
-            (
-                colaborador => 
-                    colaborador.time === time.nome
-            )
-        ;
+        return colaboradores.filter(
+            colaborador => colaborador.time === time.nome
+        );
     };
 
     return (
         <section>
             {
-                props.times.map(time => 
+                times.map((time, index) => 
                     <Time 
-                        nome={time.nome}
-                        key={time.nome}
-                        corPrimaria={time.corPrimaria}
-                        corSecundaria={time.corSecundaria}
+                        key={index}
+                        time={time}
                         colaboradores={
                             seleciona(time)
                         }
+                        aoDeletar={aoDeletar}
+                        aoMudarCor={aoMudarCor}
+                        aoFavoritar={aoFavoritar}
                     ></Time>
                 )
             }
